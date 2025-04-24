@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Estruturas
+// Definição do tipo Prontuario
 typedef struct {
     char nome[100];
     char cpf[12];
@@ -13,23 +13,27 @@ typedef struct {
     char historico[500];
 } Prontuario;
 
+// Definição do nó da lista encadeada
 typedef struct No {
     Prontuario dados;
     struct No* prox;
 } No;
 
+// Definição da estrutura de lista encadeada
 typedef struct {
     No* inicio;
     int tamanho;
 } ListaProntuarios;
 
-// Declarações das funções
+// Funções para manipulação da lista
 void inicializarTabela(ListaProntuarios* lista);
 int inserirProntuario(ListaProntuarios* lista, Prontuario novo);
 No* buscarProntuario(ListaProntuarios* lista, const char* cpf);
 int removerProntuario(ListaProntuarios* lista, const char* cpf);
 void imprimirProntuarios(ListaProntuarios* lista);
 void destruir(ListaProntuarios* lista);
+
+// Funções auxiliares de entrada/saída
 void imprimirData(const char* data);
 void imprimirProntuario(Prontuario p);
 void lerData(char* data);
