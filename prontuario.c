@@ -1,15 +1,16 @@
 #include "prontuario.h"
 
-// Função para inicializar a lista
-void inicializarTabela(ListaProntuarios* lista) {
+void inicializarLista(ListaProntuarios* lista) {
     lista->inicio = NULL;
     lista->tamanho = 0;
 }
 
-// Função para inserir um prontuário na lista
 int inserirProntuario(ListaProntuarios* lista, Prontuario novo) {
     No* novoNo = (No*)malloc(sizeof(No));
-    if (novoNo == NULL) return 0;
+    if (novoNo == NULL) {
+        printf("Erro na alocação de memória!\n");
+        return 0;
+    }
 
     novoNo->dados = novo;
     novoNo->prox = lista->inicio;
@@ -40,7 +41,7 @@ int removerProntuario(ListaProntuarios* lista, const char* cpf) {
         atual = atual->prox;
     }
 
-    if (atual == NULL) return 0;
+    if (atual == NULL) return 0;// nao encontrou o cpf
 
     if (anterior == NULL) {
         lista->inicio = atual->prox;
@@ -68,18 +69,6 @@ void imprimirProntuarios(ListaProntuarios* lista) {
         printf("\n\n");
         atual = atual->prox;
     }
-}
-
-// Função para destruir a lista e liberar a memória
-void destruir(ListaProntuarios* lista) {
-    No* atual = lista->inicio;
-    while (atual != NULL) {
-        No* temp = atual;
-        atual = atual->prox;
-        free(temp);
-    }
-    lista->inicio = NULL;
-    lista->tamanho = 0;
 }
 
 // Função para imprimir a data
@@ -115,4 +104,8 @@ void lerProntuario(Prontuario* p) {
     lerData(p->data_nasc);
 
     strcpy(p->historico, "Histórico inicial");
+
+    destruir(&lista);
+
+    return 0;
 }

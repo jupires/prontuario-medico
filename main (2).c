@@ -2,24 +2,28 @@
 
 int main() {
     ListaProntuarios lista;
-    inicializarTabela(&lista);  // Inicializa a lista
+    inicializarLista(&lista); 
 
     int opcao;
     do {
-        printf("\n=== SISTEMA MÉDICO ===");
-        printf("\n1. Inserir prontuário");
-        printf("\n2. Buscar por CPF");
-        printf("\n3. Remover prontuário");
-        printf("\n4. Listar todos");
-        printf("\n5. Sair");
-        printf("\nOpção: ");
-        scanf("%d", &opcao);
-        getchar();  // Consumir o '\n' deixado pelo scanf
+        printf("\n=== SISTEMA MÉDICO ===\n");
+        printf("1. Inserir prontuário\n");
+        printf("2. Buscar por CPF\n");
+        printf("3. Remover prontuário\n");
+        printf("4. Listar todos\n");
+        printf("5. Sair\n");
+        if (scanf("%d", &opcao) != 1) {
+            printf("Entrada inválida! Por favor, digite um número.\n");
+            while (getchar() != '\n'); // Limpa o buffer até o fim da linha
+            continue;
+        }
+        getchar();
+         
 
         switch (opcao) {
             case 1: { 
                 Prontuario novo;
-                lerProntuario(&novo);  // Lê os dados do prontuário
+                lerProntuario(&novo);  
 
                 if (inserirProntuario(&lista, novo)) {
                     printf("Cadastrado com sucesso!\n");
@@ -31,7 +35,7 @@ int main() {
             case 2: { 
                 char cpf[12];
                 printf("\nCPF para busca: ");
-                fgets(cpf, 12, stdin);
+                fgets(cpf, sizeof(cpf), stdin);
                 cpf[strcspn(cpf, "\n")] = '\0';
 
                 No* encontrado = buscarProntuario(&lista, cpf);
@@ -56,7 +60,11 @@ int main() {
                 break;
             }
             case 4:
+            if (lista.inicio == NULL) {
+                printf("Nenhum prontuário cadastrado.\n");
+            } else {
                 imprimirProntuarios(&lista);
+            }
                 break;
             case 5:
                 printf("Encerrando...\n");
@@ -66,7 +74,6 @@ int main() {
         }
     } while (opcao != 5);
 
-    // Liberar a memória alocada para a lista
     No* atual = lista.inicio;
     while (atual != NULL) {
         No* temp = atual;
