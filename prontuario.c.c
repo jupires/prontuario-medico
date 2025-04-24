@@ -65,7 +65,7 @@ void imprimirProntuarios(ListaProntuarios* lista) {
 
     while (atual != NULL) {
         imprimirProntuario(atual->dados);
-        printf("-------------------\n");
+        printf("\n\n");
         atual = atual->prox;
     }
 }
