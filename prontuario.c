@@ -104,8 +104,4 @@ void lerProntuario(Prontuario* p) {
     lerData(p->data_nasc);
 
     strcpy(p->historico, "Histórico inicial");
-
-    destruir(&lista);
-
-    return 0;
 }
