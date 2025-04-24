@@ -8,7 +8,7 @@ void inicializarLista(ListaProntuarios* lista) {
 int inserirProntuario(ListaProntuarios* lista, Prontuario novo) {
     No* novoNo = (No*)malloc(sizeof(No));
     if (novoNo == NULL) {
-        printf("Erro na alocação de memória!\n");
+        printf("Erro na alocacao de memoria!\n");
         return 0;
     }
 
@@ -62,7 +62,7 @@ void imprimirProntuarios(ListaProntuarios* lista) {
     }
 
     No* atual = lista->inicio;
-    printf("\n=== PRONTUÁRIOS (%d) ===\n", lista->tamanho);
+    printf("\n=== PRONTUARIOS (%d) ===\n", lista->tamanho);
 
     while (atual != NULL) {
         imprimirProntuario(atual->dados);
@@ -81,12 +81,13 @@ void imprimirProntuario(Prontuario p) {
     printf("\nNome: %s\n", p.nome);
     printf("CPF: %s\n", p.cpf);
     printf("Nascimento: %s\n", p.data_nasc);
-    printf("Histórico: %s\n", p.historico);
+    printf("Historico: %s\n", p.historico);
 }
 
 // Função para ler a data
 void lerData(char* data) {
     printf("Data nascimento (DD/MM/AAAA): ");
+    fflush(stdin);  // limpa o buffer
     fgets(data, 11, stdin);
     data[strcspn(data, "\n")] = '\0';
 }
@@ -103,5 +104,5 @@ void lerProntuario(Prontuario* p) {
 
     lerData(p->data_nasc);
 
-    strcpy(p->historico, "Histórico inicial");
+    strcpy(p->historico, "Historico inicial");
 }

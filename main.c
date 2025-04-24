@@ -6,14 +6,14 @@ int main() {
 
     int opcao;
     do {
-        printf("\n=== SISTEMA MEDICO ===\n");
-        printf("1. Inserir prontuario\n");
+        printf("\n=== SISTEMA MÉDICO ===\n");
+        printf("1. Inserir prontuário\n");
         printf("2. Buscar por CPF\n");
-        printf("3. Remover prontuario\n");
+        printf("3. Remover prontuário\n");
         printf("4. Listar todos\n");
         printf("5. Sair\n");
         if (scanf("%d", &opcao) != 1) {
-            printf("Entrada invalida! Por favor, digite um numero.\n");
+            printf("Entrada inválida! Por favor, digite um número.\n");
             while (getchar() != '\n'); // Limpa o buffer até o fim da linha
             continue;
         }
@@ -42,7 +42,7 @@ int main() {
                 if (encontrado) {
                     imprimirProntuario(encontrado->dados);
                 } else {
-                    printf("Prontuario nao encontrado!\n");
+                    printf("Prontuário não encontrado!\n");
                 }
                 break;
             }
@@ -55,13 +55,13 @@ int main() {
                 if (removerProntuario(&lista, cpf)) {
                     printf("Removido com sucesso!\n");
                 } else {
-                    printf("CPF nao encontrado!\n");
+                    printf("CPF não encontrado!\n");
                 }
                 break;
             }
             case 4:
             if (lista.inicio == NULL) {
-                printf("Nenhum prontuario cadastrado.\n");
+                printf("Nenhum prontuário cadastrado.\n");
             } else {
                 imprimirProntuarios(&lista);
             }
@@ -70,7 +70,7 @@ int main() {
                 printf("Encerrando...\n");
                 break;
             default:
-                printf("Opcaoo invalida!\n");
+                printf("Opção inválida!\n");
         }
     } while (opcao != 5);
 
