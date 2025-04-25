@@ -12,14 +12,15 @@ typedef struct {
     char historico[200];
 } Prontuario;
 
+//no da lista 
 typedef struct No {
     Prontuario dados;
-    struct No* prox;
+    struct No* prox; //ponteiro para o prox no
 } No;
 
 typedef struct {
-    No* inicio;
-    int tamanho;
+    No* inicio; 
+    int tamanho; //qntd de pront na lista
 } ListaProntuarios;
 
 void inicializarLista(ListaProntuarios* lista);
