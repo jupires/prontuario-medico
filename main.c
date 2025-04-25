@@ -12,18 +12,18 @@ int main() {
         printf("3. Remover prontuario\n");
         printf("4. Listar todos\n");
         printf("5. Sair\n");
-        if (scanf("%d", &opcao) != 1) {
+        if (scanf("%d", &opcao) != 1) { //le a opção do usuario
             printf("Entrada invalida! Por favor, digite um numero.\n");
             while (getchar() != '\n'); // Limpa o buffer até o fim da linha
             continue;
         }
-        getchar();
+        getchar(); // consome o '\n' deixado pelo scanf
          
 
         switch (opcao) {
-            case 1: { 
+            case 1: { //insere novo prontuario
                 Prontuario novo;
-                lerProntuario(&novo);  
+                lerProntuario(&novo); //coleta dados do novo pront
 
                 if (inserirProntuario(&lista, novo)) {
                     printf("Cadastrado com sucesso!\n");
@@ -32,7 +32,7 @@ int main() {
                 }
                 break;
             }
-            case 2: { 
+            case 2: { //busca por cpf
                 char cpf[12];
                 printf("\nCPF para busca: ");
                 fgets(cpf, sizeof(cpf), stdin);
@@ -46,7 +46,7 @@ int main() {
                 }
                 break;
             }
-            case 3: { 
+            case 3: { //remoção por cpf
                 char cpf[12];
                 printf("\nCPF para remover: ");
                 fgets(cpf, 12, stdin);
@@ -59,7 +59,7 @@ int main() {
                 }
                 break;
             }
-            case 4:
+            case 4: //lista todos os pront
             if (lista.inicio == NULL) {
                 printf("Nenhum prontuario cadastrado.\n");
             } else {
@@ -70,10 +70,11 @@ int main() {
                 printf("Encerrando...\n");
                 break;
             default:
-                printf("Opcaoo invalida!\n");
+                printf("Opcao invalida!\n");
         }
-    } while (opcao != 5);
+    } while (opcao != 5); 
 
+    // libera memoria usada antes de encerrar 
     No* atual = lista.inicio;
     while (atual != NULL) {
         No* temp = atual;
